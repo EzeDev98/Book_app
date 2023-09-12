@@ -1,0 +1,111 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster+Two&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/Story.css' %}">
+    <title>educazione {% block title %} | {{tale.story_title}} {% endblock %}</title>
+</head>
+
+<body>
+    <div id="container">
+        <input id="check" type="checkbox" />
+        <span id="icon"></span>
+        <div id="theme">
+            <span id="color"></span>
+        </div>
+        <section id="pages">
+            <div class="home">
+                <a href="{% url 'home' %}"><img src="{% static 'Project-image/home.png' %}" ></a>
+            </div>
+            <button class="buton" type="button" onclick="goBack()"><i class="fa fa-long-arrow-right"></i>Back</button>
+            <div class="page-content">
+                {% for page_content in paged_story %}
+                <div class="text page" id="text page-1">
+                    <h3>{{tale.chapter}}</h3>
+                    <h4>{{tale.story_title}}</h4>
+                    <p id="paginate">
+                        {{ page_content }}
+                    </p>
+                    <div class="page-number">
+                        <span>{{ paged_story.number }}</span>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <div class="pagination-container">
+                <div class="pagination">
+                    <div class="buttun">
+                        {% if paged_story.has_previous %}
+                            <a href="?page={{ paged_story.previous_page_number }}" class="btn1"><i class="fa fa-long-arrow-right"></i>Prev</a>
+                        {% else %}
+                            <a class="btn1 disabled"><i class="fa fa-long-arrow-right"></i>Prev</a>
+                        {% endif %}
+                    </div>
+                    <ul>
+                        {% for i in paged_story.paginator.page_range %}
+                            {% if i == paged_story.number %}
+                                <a href="?page={{ i }}" class="link active">{{ i }}</a>
+                            {% elif i > paged_story.number and i <= paged_story.number|add:6 %}
+                                <a href="?page={{ i }}" class="link">{{ i }}</a>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                    <div class="buttun">
+                        {% if paged_story.has_next %}
+                            <a href="?page={{ paged_story.next_page_number }}" class="btn2">Next<i class="fa fa-long-arrow-right"></i></a>
+                        {% else %}
+                            <a class="btn2 disabled">Next<i class="fa fa-long-arrow-right"></i></a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+    </div>
+    <script>
+        function goBack() {
+            window.history.back();  
+        }
+
+
+        const themeCheckbox = document.getElementById("check");
+        const themeIcon = document.getElementById("icon");
+
+        // Check local storage for saved theme
+        const savedTheme = localStorage.getItem("theme");
+        if (savedTheme === "night") {
+            themeCheckbox.checked = true;
+            document.body.classList.add("night-mode");
+        }
+
+        // Toggle theme and save to local storage
+        themeCheckbox.addEventListener("change", function () {
+            if (themeCheckbox.checked) {
+                document.body.classList.add("night-mode");
+                localStorage.setItem("theme", "night");
+            } else {
+                document.body.classList.remove("night-mode");
+                localStorage.setItem("theme", "day");
+            }
+        });
+
+        // Toggle theme icon when theme changes
+        themeCheckbox.addEventListener("change", function () {
+            themeIcon.style.backgroundImage = themeCheckbox.checked
+                ? "url({% static 'Project-image/sunny.png' %})"
+                : "url({% static 'Project-image/moon.png' %})";
+            }); 
+    </script>
+
+</body>
+
+</html>

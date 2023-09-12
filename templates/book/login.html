@@ -1,0 +1,276 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster+Two&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <title>educazione {% block title %} | Login Form {% endblock %}</title>
+</head>
+
+<body>
+    <section id="header">
+        <header class="header">
+            <nav id="navbar">
+                <input type="checkbox" name="" id="chk1">
+                <a class="logo" href="{% url 'home' %}">
+                    <img src="{% static 'Project-image/edu.png' %}" width="120px">
+                </a>
+                <ul>
+                    <!-- active -->
+                    <li>
+                        <a
+                        {% if '/' == request.path %} 
+                        class="nav_link active"
+                        {% else %}
+                        class="nav_link"
+                        {% endif %}
+                         href="{% url 'home' %}">home</a>
+                    </li>
+                    <li>
+                        <a 
+                        {% if 'contact' in request.path %}
+                        class="nav_link active"
+                        {% else %}
+                        class="nav_link"
+                        {% endif %}
+                        href="{% url 'contact' %}">contact</a>
+                    </li>
+                    <li><a 
+                        {% if 'about' in request.path %}
+                        class="nav_link active"
+                        {% else %}
+                        class="nav_link"
+                        {% endif %}
+                        href="{% url 'about' %}">about</a>
+                    </li>
+                    <li><a
+                         {% if 'service' in request.path %}
+                         class="nav_link active"
+                         {% else %}
+                         class="nav_link"
+                         {% endif %}
+                        href="{% url 'service' %}">service</a></li>
+                </ul>
+                <div class="search-box">
+                    <div class="search">
+                        <form action="{% url 'search' %}" method="GET">
+                            <input type="text" name="search" id="sch" placeholder="Search preference ...">
+                            <button class="btn" type="submit" name=""><i class="fa fa-search"></i></button>
+                        </form>
+                    </div>
+                </div>
+                <div class="menu">
+                    <label for="chk1">
+                        <i class="fa fa-bars"></i>
+                    </label>
+                </div> 
+            </nav>
+            <div id="nav">
+                <div class="nav-details">
+                    <ul>
+                        <li><a 
+                            {% if 'home' in request.path %}
+                            class="nav_links active"
+                            {% else %}
+                            class="nav_links"
+                            {% endif %}
+                             href="{% url 'home' %}">Premium</a>
+                        </li>
+                        <li><a 
+                            {% if 'home' in request.path %}
+                            class="nav_links active"
+                            {% else %}
+                            class="nav_links"
+                            {% endif %}
+                             href="{% url 'home' %}">Projects</a>
+                        </li>
+                        <li><a 
+                            {% if 'home' in request.path %}
+                            class="nav_links active"
+                            {% else %}
+                            class="nav_links"
+                            {% endif %}
+                             href="{% url 'home' %}">Sponsors</a>
+                        </li>
+                        <li><a 
+                            {% if 'home' in request.path %}
+                            class="nav_links active"
+                            {% else %}
+                            class="nav_links"
+                            {% endif %}
+                             href="{% url 'home' %}">Mentorship</a>
+                        </li>
+                        <li><a 
+                            {% if 'home' in request.path %}
+                            class="nav_links active"
+                            {% else %}
+                            class="nav_links"
+                            {% endif %}
+                             href="{% url 'home' %}">PortFolio</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="nav-details-2">
+                    <ul>
+                        {% if user.is_authenticated %}
+                        <li><a href="JavaScript:{document.getElementById('logout').submit()}"><i class="fa fa-sign-out"></i>Logout</a>
+                        <form action="{% url 'logout' %}" id="logout" method="POST">
+                            {% csrf_token %}
+                            <input type="hidden">
+                        </form>
+                        </li>
+                        {% else %}
+                        <li><a href="{% url 'login' %}"><i class="fa fa-sign-in"></i>Login</a></li>
+                        <li><a href="{% url 'signup' %}"><i class="fa fa-user"></i>Register</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </header>
+    </section>
+
+    <section id="login">
+        <div class="login-cover">
+            <div class="login-page-banner">
+                <div class="login-align">
+                    <a href="{% url 'home' %}">Home </a>
+                    <h5>/</h5>
+                    <h5>Login</h5>
+                </div>
+                <h1>Login to your account</h1>
+            </div>
+        </div>
+        {% if error %}
+            <div id="message">
+                <h5>{{ error }}</h5>
+            </div>
+        {% endif %}
+        <div class="login-form">
+            <form action="{% url 'login' %}" method="POST">
+                {% csrf_token %}
+                <div class="box">
+                    <input type="text" name="username" class="reg" required>
+                    <label>Username</label>
+                </div>
+                <div class="box">
+                    <input type="password" name="password" class="reg" required>
+                    <label>Password</label>
+                </div>
+                <input type="checkbox" name=""><span>Remember me</span><br>
+                <div id="m_b_2"></div>
+                <input type="submit" name="" value="Login"><br>
+                <div class="btn">
+                    <p> Don't have an account?<a href="{% url 'signup' %}">Signup</a></p>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <footer id="footer">
+        <div class="footer-head">
+            <div class="footer-container-heading">
+                <img src="{% static 'Project-image/book.png' %}" width="70px">
+                <h1>educazione</h1>
+            </div>
+            <div class="footer-container-news">
+                <a href="{% url 'contact' %}">Get in touch</a>
+            </div>
+        </div>
+        <div class="footer-contents">
+            <div class="footer-container-text">
+                <div class="texts">
+                    <h4>Promotions</h4>
+                    <a href="">Projects</a>
+                    <a href="">Internships</a>
+                    <a href="">Seminals</a>
+                    <a href="">Conferences</a>
+                    <a href="">Tech summit</a>
+                    <a href="">Communities</a>
+                    <a href="">Open Ai</a>
+                </div>
+                <div class="texts">
+                    <h4>Subjects</h4>
+                    <a href="">Technoloy</a>
+                    <a href="">Crafts</a>
+                    <a href="">Innovation</a>
+                    <a href="">Partnerships</a>
+                    <a href="">Open source</a>
+                    <a href="">Spaceships</a>
+                    <a href="">Intuitives</a>
+                </div>
+                <div class="texts">
+                    <h4>Affiliations</h4>
+                    <a href="">Udemy</a>
+                    <a href="">Coursera</a>
+                    <a href="">Youtube</a>
+                    <a href="">Bards Ai</a>
+                    <a href="">Free CC</a>
+                    <a href="">E-books</a>
+                    <a href="">E-learning</a>
+                </div>
+                <div class="texts">
+                    <h4>Features</h4>
+                    <a href="">Storys</a>
+                    <a href="">Essays</a>
+                    <a href="">Articles</a>
+                    <a href="">News</a>
+                    <a href="">Creative writings</a>
+                    <a href="">Research</a>
+                    <a href="">Biography</a>
+                </div>
+            </div>
+            <div class="footer-container-social">
+                <h3>Social media</h3>
+                <div class="icons">
+                    <ul>
+                        <li><a id="face" href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+                        </li>
+                        <li><a id="twi" href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                        </li>
+                        <li><a id="goo" href="https://google.com" target="_blank"><i class="fab fa-github"></i></a></li>
+                        <li><a id="inst" href="https://google.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                        </li>
+                        <li><a id="you" href="https://google.com" target="_blank"><i class="fab fa-youtube"></i></a>
+                        </li>
+                    </ul>
+                </div>
+                <h4>More questions or need further assistance?</h4>
+                <a class="sign" href="{% url 'home' %}">Sign up</a>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="terms">
+                <li><a href="">Terms and conditions</a></li>
+                <li><a href="">Privacy policy</a></li>
+                <li><a href="">Cookies policy</a></li>
+                <li><a href="">Copyright notification</a></li>
+                <li><a href="">Cookie Settings</a></li>
+            </div>
+            <div class="terms-2">
+                <div class="logo-img">
+                    <img src="{% static 'Project-image/book.png' %}" width="50px">
+                    <h1>educazione</h1>
+                </div>
+                <p>Copyright &copy; 2005-{% now 'Y' %} Educazione All rights reserved By EzeDev Inc.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        window.addEventListener('scroll', function () {
+            var header = document.querySelector('.header');
+            var scrolled = window.scrollY > 0;
+            header.classList.toggle('scrolled', scrolled);
+        });
+    </script>
+</body>
+
+</html>

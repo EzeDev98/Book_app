@@ -1,0 +1,72 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster+Two&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/about.css' %}">
+    <title> educazione {% block title %} | About us Page {% endblock %} </title>
+</head>
+
+<body>
+    <section id="container">
+        <div class="container">
+            <button class="buton" type="button" onclick="goBack()"><i class="fa fa-long-arrow-right"></i>Back</button>
+            <h3>About Me</h3>
+            <div class="image-container">
+                <img src="{% static 'Project-image/moses.png' %}" alt="">
+            </div>
+
+            <div class="contact-details">
+                <div class="spec-details">
+                    <h4><i class="fa fa-location-arrow"></i>Address: </h4>
+                    <h4 class="space">109 Awolowo road Ikoyi</h4>
+                </div>
+                <div class="spec-details">
+                    <h4><i class="fa fa-phone"></i>Phone: </h4>
+                    <h4 class="space">+2349022931212</h4>
+                </div>
+                <div class="spec-details">
+                    <h4><i class="fa fa-envelope"></i>Email: </h4>
+                    <h4 class="space">ezemosesjohn21997@gmail.com</h4>
+                </div>
+            </div>
+
+            <div class="text-container">
+                <p>
+                    I'm <strong>Eze Moses John</strong> a passionate and innovative software developer with a deep love for turning ideas into
+                    functional,
+                    user-friendly software. I have 5 years of personal development experience, I've honed my skills in
+                    web and database management, and software architecture. My journey in
+                    this ever-evolving field has led me to tackle diverse challenges, from crafting responsive and
+                    elegant user interfaces to optimizing database performance. My commitment to clean code,
+                    attention to detail, and a problem-solving mindset allows me to create software that not only
+                    meets but exceeds expectations. Whether you're a startup looking to bring your vision to life or
+                    an established business seeking software enhancements, I'm here to transform your ideas into
+                    reality.
+
+                    In addition to my technical abilities, I'm a firm believer in effective communication and
+                    collaboration. I thrive on working closely with clients, understanding their unique needs, and
+                    translating those needs into innovative solutions. My goal is not just to deliver software but
+                    to build relationships and exceed expectations. I'm excited about the future of technology and
+                    how it can drive positive change, and I'm always eager to take on new challenges and stay ahead
+                    of industry trends. 
+                </p>
+            </div>
+            
+        </div>
+    </section>
+
+    <script>
+        function goBack() {
+            window.history.back();  
+        }
+    </script>
+</body>
+
+</html>

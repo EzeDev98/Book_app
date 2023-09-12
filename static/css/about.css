@@ -1,0 +1,156 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: sans-serif;
+    min-height: auto;
+    width: 100%;
+}
+
+section#container {
+    width: 100%;
+    min-height: 100vh;
+    padding: 2%;
+    overflow: hidden !important;
+}
+
+section#container  .container{
+    margin:  0 auto;
+}
+
+section#container .container .buton {
+    padding: 7px 20px;
+    outline: none;
+    border: none;
+    box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+    background-color: whitesmoke;
+    color: #273245;
+    margin-bottom: 20px;
+    transition: .3s ease;
+    cursor: pointer;
+}
+
+section#container .container .buton i {
+    color: #273245;
+    margin-right: 4px;
+    transform: rotate(180deg);
+}
+
+section#container .container .buton:hover {
+    background-color: rgb(240, 244, 248);
+}
+
+section#container  .container h3{
+    text-align: center;
+    margin-bottom: 3rem;
+    line-height: 5;
+    color: #2f3e59;
+}
+
+section#container  .container .image-container{
+    text-align: center;
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+section#container  .container .image-container img{
+    border-radius: 50%;
+    width: 100%;
+    background-position: center;
+    object-fit: contain;
+    background-color: gainsboro;
+    box-shadow: 0 1px 4px rgba(47, 62, 89, .3);
+}
+
+section#container  .container .text-container{
+    width: 100%;
+    padding: 2rem 1%;
+    margin: 0 auto;
+    line-height: 2;
+    letter-spacing: 1.5px;
+}
+
+section#container  .container .text-container p{
+    color: #2f3e59;
+    font-weight: lighter;
+    font-size: 12px;
+}
+
+.contact-details {
+    line-height: 3;
+}
+
+.contact-details .spec-details{
+    display: flex;
+    align-items: center;
+    padding: 0 1rem;
+}
+
+.contact-details .spec-details h4{
+    font-weight: lighter;
+    font-size: 13px;
+    color: #2f3e59;
+}
+
+.contact-details .spec-details h4 i {
+    margin-right: 8px;
+    font-size: 11px;
+}
+
+.contact-details .spec-details h4.space {
+    padding-left: 5px;
+}
+
+
+@media (max-width: 540px) {
+
+    section#container  .container .image-container img{
+        margin-bottom: 2rem;
+    } 
+    
+}
+
+
+@media (max-width: 412px) {
+    
+    section#container  .container .image-container img{
+        margin-bottom: 2rem;
+    }
+
+}
+
+@media (max-width: 320px) {
+    
+    section#container  .container h3{
+        font-size: 12px;
+    }
+    
+    section#container  .container .image-container{
+        max-width: 200px;
+    }
+    
+    section#container  .container .image-container img{
+       margin-bottom: 2rem;
+    }
+    
+    section#container  .container .text-container p{
+        font-size: 10px;
+    }
+    
+    .contact-details .spec-details{
+        margin: 0 auto;
+    }
+    
+    .contact-details .spec-details h4{
+        font-size: 11px;
+    }
+    
+    .contact-details .spec-details h4 i {
+        font-size: 10px;
+    }
+    
+}

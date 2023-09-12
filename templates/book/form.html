@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster+Two&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/form.css' %}">
+    <title>educazione {% block title %} | Story form  {% endblock %}</title>
+</head>
+
+<body>
+
+    <section id="login">
+        <div class="login-align">
+            <button class="buton" type="button" onclick="goBack()"><i class="fa fa-long-arrow-right"></i>Go-Back</button>
+        </div>
+        <div class="login-form">
+            <div class="login-cover">
+                <h1>Create any story of your choice here</h1>
+            </div>
+            <form action="{% url 'form' %}" method="POST">
+                {% csrf_token %}
+                <div class="box">
+                    <input type="text" name="booktitle" class="reg" placeholder="Enter the book title..." required>
+                </div>
+                <div class="box">
+                    <input type="text" name="storytitle" class="reg" placeholder="Enter the story title..." required>
+                </div>
+                <div class="box">
+                    <input type="text" name="chapter" class="reg" placeholder="Enter the chapter..." required>
+                </div>
+                <div class="box">
+                    <input type="text" name="author" class="reg" placeholder="Enter author's name..." required>
+                </div>
+                <div class="box">
+                    <input type="text" name="edition" class="reg" placeholder="Enter book edition or year..." required>
+                </div>
+                <div class="box">
+                    <input type="text" name="language" class="reg" placeholder="Enter book language..." required>
+                </div>
+                <div class="box">
+                    <input type="text" name="origin" class="reg" placeholder="Enter book origin" required>
+                </div>
+                <div class="box">
+                    <textarea name="story" id="reg" placeholder="Write your stories here..." required></textarea>
+                </div>
+                <input type="submit" name="" value="Create"><br>
+            </form>
+        </div>
+    </section>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</body>
+
+</html>
